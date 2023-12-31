@@ -6,8 +6,20 @@
     @endif
 
     <form wire:submit="savePost">
-        <input type="text" wire:model='title' placeholder="Title">
-        <textarea wire:model="content" placeholder="Content"></textarea>
+        <label for="title">Title:</label>
+        <input type="text" wire:model.live='title' placeholder="Title">
+        @error('title')
+            <span class="error">
+                {{ $message }}
+            </span>
+        @enderror
+        <label for="content">Content:</label>
+        <textarea wire:model.live="content" placeholder="Content"></textarea>
+        @error('content')
+            <span class="error">
+                {{ $message }}
+            </span>
+        @enderror
         <button type="submit">Save Post</button>
     </form>
 </div>
